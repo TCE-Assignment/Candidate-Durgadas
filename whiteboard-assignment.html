@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiteboard App Assignment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: #2c3e50;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+        }
+
+        ul,
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .reference {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+
+        .requirements {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .requirement-item {
+            margin-bottom: 20px;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            padding: 10px 15px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            pre,
+            code {
+                font-size: 10pt;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+
+            @page {
+                margin: 2cm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🖍 Whiteboard App Assignment</h1>
+        <p><strong>Platform:</strong> Android (Kotlin) | <strong>Target:</strong> IFP Devices | <strong>Local
+                Storage</strong></p>
+    </div>
+
+    <section>
+        <h2>📌 Objective</h2>
+        <p>Build a whiteboard application using Kotlin designed for Interactive Flat Panels (IFPs). All drawings,
+            shapes, and text interactions must be stored locally in a structured .json format. The application should
+            work offline, support large screens (65″–85″) in landscape orientation, and enable teaching, drawing, and
+            collaboration directly on the screen.</p>
+    </section>
+
+    <section class="reference">
+        <h2>🔗 Reference Design & Functionality</h2>
+        <p>Use the following app for inspiration in layout and interaction design:</p>
+        <p>👉 <a href="https://v0-tata-class-edge.vercel.app/"
+                target="_blank">https://v0-tata-class-edge.vercel.app/</a></p>
+    </section>
+
+    <section class="requirements">
+        <h2>🛠 Core Functional Requirements</h2>
+
+        <div class="requirement-item">
+            <h3>1. ✏ Freehand Drawing</h3>
+            <ul>
+                <li>Touch and stylus support using Android Canvas.</li>
+                <li>Smooth curves with Path.</li>
+                <li>Track each stroke's:
+                    <ul>
+                        <li>Points</li>
+                        <li>Color</li>
+                        <li>Stroke width</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="requirement-item">
+            <h3>2. 🧼 Eraser</h3>
+            <ul>
+                <li>Toggle eraser mode.</li>
+                <li>Pixel-based erasing using touch drag.</li>
+                <li>Optional: highlight erase area.</li>
+                <li>Text deletion should support:
+                    <ul>
+                        <li>Pixel-based partial erasing</li>
+                        <li>Full-text selection removal</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="requirement-item">
+            <h3>3. 🎨 Stroke Width & Color</h3>
+            <ul>
+                <li>Adjustable stroke width via slider or fixed-size buttons (Thin / Medium / Thick).</li>
+                <li>Choose from a palette of 5–6 colors.</li>
+            </ul>
+        </div>
+
+        <div class="requirement-item">
+            <h3>4. 🔺 Insert Shapes</h3>
+            <ul>
+                <li>Shapes supported:
+                    <ul>
+                        <li>Rectangle</li>
+                        <li>Circle</li>
+                        <li>Line</li>
+                        <li>Polygon (4+ sides)</li>
+                    </ul>
+                </li>
+                <li>Drag to place and resize.</li>
+                <li>Properties to save:
+                    <ul>
+                        <li>Shape type</li>
+                        <li>Size and position</li>
+                        <li>Color</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="requirement-item">
+            <h3>5. 🔠 Insert Text</h3>
+            <ul>
+                <li>Tap to insert a text box.</li>
+                <li>Editable text, font size, and color.</li>
+                <li>Movable after insertion.</li>
+                <li>Erasable via both pixel-based and full-selection modes.</li>
+            </ul>
+        </div>
+
+        <div class="requirement-item">
+            <h3>6. 💾 Save & Load Locally</h3>
+            <ul>
+                <li>Save whiteboard state as .json in internal or external app-specific storage.</li>
+                <li>Load JSON files to restore the canvas.</li>
+                <li>Use filenames like:
+                    <br><code>whiteboard_yyyyMMdd_HHmmss.json</code>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>✅ Example JSON Structure</h2>
+        <pre><code>{
+  "strokes": [
+    {
+      "points": [[10, 10], [15, 20], [20, 30]],
+      "color": "#FF0000",
+      "width": 3
+    }
+  ],
+  "shapes": [
+    {
+      "type": "rectangle",
+      "topLeft": [50, 50],
+      "bottomRight": [150, 100],
+      "color": "#0000FF"
+    }
+  ],
+  "texts": [
+    {
+      "text": "Hello IFP!",
+      "position": [300, 400],
+      "color": "#000000",
+      "size": 24
+    }
+  ]
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>📱 Device & UX Considerations</h2>
+        <ul>
+            <li>Designed for Interactive Flat Panels (65″–85″)</li>
+            <li>Landscape-only mode</li>
+            <li>UI elements should scale for large touch displays</li>
+            <li>All files are saved locally</li>
+            <li>No reliance on internet access</li>
+            <li>Use scalable dimensions (dp/sp) and large touch targets</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🧰 Tech Guidelines (Android - Kotlin)</h2>
+        <ul>
+            <li><strong>Custom Drawing:</strong> Use Canvas, Paint, and Path</li>
+            <li><strong>State Management:</strong> Use ViewModel, LiveData, StateFlow</li>
+            <li><strong>Serialization:</strong> Use Gson or kotlinx.serialization for JSON</li>
+        </ul>
+
+        <h3>Project Structure:</h3>
+        <pre><code>/models        → Data classes for strokes, shapes, text
+/services      → File handling, JSON loading/saving
+/views         → Drawing canvas, toolbars
+/viewmodels    → App logic & state
+/ui            → Screens and fragments
+MainActivity.kt</code></pre>
+    </section>
+
+    <section>
+        <h2>⚙ Technical Expectations</h2>
+        <ul>
+            <li>Kotlin best practices</li>
+            <li>Null safety</li>
+            <li>Modular architecture (MVVM)</li>
+            <li>Well-documented code</li>
+            <li>Clean and reusable components</li>
+            <li>Handle configuration changes and scaling gracefully</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>🌟 Bonus Features (Optional)</h2>
+        <ul>
+            <li>🔁 Undo / Redo support</li>
+            <li>🖼 Export canvas as PNG image</li>
+            <li>🔍 Zoom and Pan support</li>
+            <li>🧾 Quick preview thumbnails of saved whiteboards</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>✅ Deliverables</h2>
+        <ul>
+            <li>📁 GitHub repository with full Kotlin project</li>
+            <li>📝 2 sample .json files (representing saved whiteboards)</li>
+            <li>📄 README.md including:
+                <ul>
+                    <li>Feature list</li>
+                    <li>Setup instructions for IFP deployment</li>
+                    <li>File format explanation</li>
+                    <li>Architecture overview</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <div class="footer">
+        <p>Android Whiteboard App Assignment for IFP Devices</p>
+    </div>
+</body>
+
+</html>
